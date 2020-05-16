@@ -8,30 +8,32 @@ class Login extends React.Component {
 
         <div class="flex h-screen inline">
             <div class="bg-gray-500 w-3/5 h-full">
-                pee
+                <h1 class="text-2xl font-mono font-bold p-20">Welcome to Job Groups!</h1>
+                <p class="font-mono px-20">
+                    Job groups is a web application meant to help people search for jobs
+                    by helping others find new job postings which are asfgsvsvsdvdsksdkfnsddPEE.
+
+                    <br/>
+
+                    <img class="pt-20 pl-64 h-64" src={require('../images/clumsy.png')} alt="notfsadasduppypng"></img>
+                </p>
+                {/* <img class="p-20 object-contain" src={require('../images/clumsy.png')} alt="notfsadasduppypng"></img> */}
             </div>
 
             <div class="bg-gray-200 w-2/5 h-full">
-                poo
+
+                <form class="w-full max-w-sm p-32">
+
+                    <div class="mb-4">
+                        Username or email
+                        <input class=""></input>
+                    </div>
+
+                </form>
+
             </div>
         </div>
 
-
-        <form class="w-full max-w-sm">
-            <div class="flex items-center boder-b boder-b-2 border-teal-500 py-2">
-                <input class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" type="text" placeholder="Jane Doe" aria-label="Full Name">
-                </input>
-                <button class="flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded" type="button">
-                        Sign Up
-                </button>
-            </div>
-        </form>
-        <form className="Login">
-            { /* comments and components must go in parent div*/ }
-            <h2>Please login or register.</h2>
-            <input type="text" required placeholder="Login Name"/>
-            <button type="submit"Login>Enter</button>
-        </form>
         </>
         )
     }
