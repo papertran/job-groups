@@ -11,3 +11,8 @@ Install the dependencies with:
 ## Start Django 
 To start the Django server:
 #### `python manage.py runserver`
+
+## Reset Database
+Delete the `db.sqlite3` and all files inside of `data/migrations` then run 
+#### `python manage.py makemigrations data` and `python manage.py migrate`
+Create a super user afterwards to access the admin pannel
