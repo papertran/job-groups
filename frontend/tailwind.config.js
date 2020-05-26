@@ -8,6 +8,7 @@ module.exports = {
         'darkpurple': '#2A2880',
         'darkpurple2': '#5A58C6',
         'regal-blue': '#243c5a',
+        'mainpink': '#EF73AE',
       }
     },
   },
