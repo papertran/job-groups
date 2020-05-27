@@ -1,21 +1,20 @@
 import React from 'react';
 import '../tailwind.generated.css';
-import Popup from './Popup';
+import '../index.css';
+import Modal from './Modal';
 
 class Login extends React.Component {
     
-    //POPUP
-    constructor(props) {
-        super(props);
-        this.state = { showPopup : false }
+    //POPUP  
+    state = { show : false }
+    
+    showModal = () => {
+        this.setState({ show : true });
     }
-
-    togglePopup() {
-        this.setState({
-            showPopup : !this.state.showPopup
-        });
+    
+    hideModal = () => {
+        this.setState({ show : false });
     }
-
 
     render() {
         return (
@@ -57,7 +56,11 @@ class Login extends React.Component {
                         <a class="w-2">  </a>
 
                         {/* POPUP */}
-                        <button onClick={this.togglePopup.bind(this)} class="w-20 h-8 bg-mainpink hover:bg-secpurple text-white rounded" type="button">Sign up</button>
+                        <button onClick={ this.showModal } class="w-20 h-8 bg-mainpink hover:bg-secpurple text-white rounded" type="button">Sign up</button>
+                        <Modal show={ this.state.show } handleClose={this.hideModal}>
+                            <p>Modal</p>
+                            <p>Data</p>
+                        </Modal>
                         {/* POPUP */}
 
                         <button class="text-xs text-darkpurple2 font-bold" type="button">Forgot Password?</button>
@@ -68,17 +71,26 @@ class Login extends React.Component {
             </div>
         </div>
 
-        {this.state.showPopup ? 
-                        
-            <Popup closePopup={this.togglePopup.bind(this)}/>
-                                
-            :
-            null    
-        }
-
         </>
         )
     }
 }
+
+// const Modal = ({ handleClose, show, children }) => {
+//     const showHideClassName = show ? 'modal display-block' : 'modal display-none';
+  
+//     return (
+//       <div className={showHideClassName}>
+//         <section className='modal-main'>
+//           {children}
+//           <button
+//             onClick={handleClose}
+//           >
+//             Close
+//           </button>
+//         </section>
+//       </div>
+//     );
+// };
 
 export default Login;
