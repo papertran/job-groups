@@ -7,6 +7,7 @@ then activate it with:
 
 Install the dependencies with:
 #### `pip install -r requirements.txt`
+There may be a warning after the installation, but if it the django runserver command works its fine.
 
 ## Start Django 
 To start the Django server:
