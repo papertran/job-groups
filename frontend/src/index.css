@@ -23,11 +23,12 @@ code {
 
 .modal-main {
     position:fixed;
-    background: white;
-    width: 80%;
+    background: #9EB3FC;
+    width: 40%;
     height: auto;
     top:50%;
     left:50%;
+    border-radius: 25px;
     transform: translate(-50%,-50%);
 
 }

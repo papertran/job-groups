@@ -58,8 +58,6 @@ class Login extends React.Component {
                         {/* POPUP */}
                         <button onClick={ this.showModal } class="w-20 h-8 bg-mainpink hover:bg-secpurple text-white rounded" type="button">Sign up</button>
                         <Modal show={ this.state.show } handleClose={this.hideModal}>
-                            <p>Modal</p>
-                            <p>Data</p>
                         </Modal>
                         {/* POPUP */}
 
@@ -75,22 +73,5 @@ class Login extends React.Component {
         )
     }
 }
-
-// const Modal = ({ handleClose, show, children }) => {
-//     const showHideClassName = show ? 'modal display-block' : 'modal display-none';
-  
-//     return (
-//       <div className={showHideClassName}>
-//         <section className='modal-main'>
-//           {children}
-//           <button
-//             onClick={handleClose}
-//           >
-//             Close
-//           </button>
-//         </section>
-//       </div>
-//     );
-// };
 
 export default Login;
