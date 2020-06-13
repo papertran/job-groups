@@ -1,0 +1,123 @@
+{
+	"data": {
+		"users": {
+			"username": "Raymond",
+			"usergroupsSet": [
+				{
+					"group": {
+						"groupName": "Tier 1",
+						"usergroupsSet": [
+							{
+								"user": {
+									"username": "Marshall"
+								}
+							},
+							{
+								"user": {
+									"username": "Raymond"
+								}
+							},
+							{
+								"user": {
+									"username": "Sherb"
+								}
+							},
+							{
+								"user": {
+									"username": "Zucker"
+								}
+							},
+							{
+								"user": {
+									"username": "Beau"
+								}
+							}
+						]
+					}
+				},
+				{
+					"group": {
+						"groupName": "Super Group",
+						"usergroupsSet": [
+							{
+								"user": {
+									"username": "Ankha"
+								}
+							},
+							{
+								"user": {
+									"username": "Beau"
+								}
+							},
+							{
+								"user": {
+									"username": "Flurry"
+								}
+							},
+							{
+								"user": {
+									"username": "Genji"
+								}
+							},
+							{
+								"user": {
+									"username": "Julian"
+								}
+							},
+							{
+								"user": {
+									"username": "Kiki"
+								}
+							},
+							{
+								"user": {
+									"username": "Lolly"
+								}
+							},
+							{
+								"user": {
+									"username": "Marshall"
+								}
+							},
+							{
+								"user": {
+									"username": "Molly"
+								}
+							},
+							{
+								"user": {
+									"username": "Pietro"
+								}
+							},
+							{
+								"user": {
+									"username": "Poppy"
+								}
+							},
+							{
+								"user": {
+									"username": "Raymond"
+								}
+							},
+							{
+								"user": {
+									"username": "Sherb"
+								}
+							},
+							{
+								"user": {
+									"username": "Tia"
+								}
+							},
+							{
+								"user": {
+									"username": "Zucker"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	}
+}

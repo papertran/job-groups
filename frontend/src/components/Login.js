@@ -2,6 +2,7 @@ import React from 'react';
 import '../tailwind.generated.css';
 import '../index.css';
 import Modal from './Modal';
+import {Link} from 'react';
 
 class Login extends React.Component {
     
@@ -52,7 +53,6 @@ class Login extends React.Component {
 
                     <div class="flex inline w-3/4 pt-10">
                         <button class="w-16 h-8 bg-darkpurple2 hover:bg-secpurple text-white rounded" type="button">Login</button>
-
                         <a class="w-2">  </a>
 
                         {/* POPUP */}
