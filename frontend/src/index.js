@@ -1,7 +1,11 @@
-import React from 'react';
-import { render } from 'react-dom';
-import Login from './components/Login';
-import App from './App';
-import Router from './components/Router';
+import React from "react";
+import { render } from "react-dom";
+import App from "./App";
+import { BrowserRouter } from "react-router-dom";
 
-render(<Router />, document.querySelector('#root'));
+render(
+	<BrowserRouter>
+		<App />
+	</BrowserRouter>,
+	document.querySelector("#root")
+);
