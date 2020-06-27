@@ -1,7 +1,20 @@
-import React from 'react';
-import { render } from 'react-dom';
-import Login from './components/Login';
-import App from './App';
-import Router from './components/Router';
+import React from "react";
+import { render } from "react-dom";
+import { BrowserRouter } from "react-router-dom";
+import { ApolloProvider } from "@apollo/react-hooks";
+import ApolloClient, { gql } from "apollo-boost";
 
-render(<Router />, document.querySelector('#root'));
+import App from "./App";
+// This is the url to the graphql client
+const client = new ApolloClient({
+	uri: "http://127.0.0.1:8000/graphql/",
+});
+
+render(
+	<BrowserRouter>
+		<ApolloProvider client={client}>
+			<App />
+		</ApolloProvider>
+	</BrowserRouter>,
+	document.querySelector("#root")
+);
