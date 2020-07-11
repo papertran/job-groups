@@ -1,15 +1,3 @@
-import React, { useState } from "react";
-import { connect } from "react-redux";
-import { useMutation, useLazyQuery } from "@apollo/react-hooks";
-import { gql } from "apollo-boost";
-import { registerUser } from "../actions";
-
-const Modal = ({ handleClose, show, registerUser }) => {
-	// const Modal = (props) => {
-
-	const showHideClassName = show
-		? "modal display-block"
-		: "modal display-none";
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
@@ -26,50 +14,24 @@ const Modal = ({ handleClose, show, children }) => {
         password2: '',
     });
 
-	const USER_INFO = gql`mutation {
-	      register(
-	          email: "${registration.email}",
-	          username: "${registration.username}",
-	          password1: "${registration.password1}",
-	          password2: "${registration.password2}"
-	      ) {
-	        success
-	        errors
-	        token
-	        refreshToken
-	      }
-	    }`;
+    const USER_INFO = gql`mutation {
+        register(
+            email: "${registration.email}", 
+            username: "${registration.username}", 
+            password1: "${registration.password1}", 
+            password2: "${registration.password2}"
+        ) {
+          success
+          errors
+          token
+          refreshToken
+        }
+      }
+      `;
 
-	const FIND_USER = gql`
-		{
-			users(username: "${registration.username}") {
-				username
-				usergroupsSet {
-					group {
-						groupName
-						jobgroupsSet {
-							user {
-								username
-							}
-							job {
-								name
-								url
-								postDate
-								endDate
-								salary
-								location
-								position
-							}
-						}
-					}
-				}
-			}
-		}
-	`;
+    const [addUser] = useMutation(USER_INFO);
 
-	const [addUser] = useMutation(USER_INFO);
-	const [finduser, { called, loading, data }] = useLazyQuery(FIND_USER);
-	// console.log(registration);
+    // console.log(registration);
 
     return (
         <div className={showHideClassName}>
@@ -160,4 +122,4 @@ const Modal = ({ handleClose, show, children }) => {
     );
 };
 
-export default connect(null, { registerUser })(Modal);
+export default Modal;
