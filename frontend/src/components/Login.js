@@ -27,26 +27,18 @@ class Login extends React.Component {
         return (
             <>
 
-                <div className="flex h-screen inline">
-                    <div className="bg-mainpurple w-3/5 h-full">
+                <div class="flex h-screen inline">
+                    <div class="bg-mainpurple w-3/5 h-full">
 
-                        <h1 className="text-2xl font-mono font-bold pl-20 pt-12">
-                            <img className="inline" src={require('../images/Logo.png')} alt="idk"></img>
-                            <span className="pl-12">Welcome to Job Groups!</span>
+                        <h1 class="text-2xl font-mono font-bold pl-20 pt-12">
+                            <img class="inline" src={require('../images/Logo.png')} alt="idk"></img>
+                            <span class="pl-12">Welcome to Job Groups!</span>
                         </h1>
                         <div className="font-mono pl-20 pt-12 pr-12">
                             Job groups is a web application meant to help people search for jobs
                             by helping others find new job postings which are asfgsvsvsdvdsksdkfnsddPEE.
 
-                        <div className="text-2xl font-mono font-bold pl-20 pt-12">
-                                <img className="inline" src={require('../images/Logo.png')} alt="idk"></img>
-                                <span className="pl-12">Welcome to Job Groups!</span>
-                            </div>
-
-                            <p className="font-mono pl-20 pt-12 pr-12">
-                                Job groups is a web application meant to help people search for jobs
-                                by helping others find new job postings which are asfgsvsvsdvdsksdkfnsddPEE.
-                            </p>
+                    <br />
 
                             <img className="pl-40 h-auto" src={require('../images/clumsy_w_jobs.png')} alt="notfsadasduppypng"></img>
                         </div>

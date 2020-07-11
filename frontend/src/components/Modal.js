@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
-import { useMutation } from '@apollo/react-hooks';
-import gql from 'graphql-tag';
-
-// Needs password validation
+import { useMutation } from "@apollo/react-hooks";
+import { gql } from "apollo-boost";
 
 const Modal = ({ handleClose, show, children }) => {
     const showHideClassName = show ? "modal display-block" : "modal display-none";
