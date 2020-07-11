@@ -2,7 +2,6 @@ import React from "react";
 import { useQuery } from "@apollo/react-hooks";
 import { gql } from "apollo-boost";
 
-const username = "Raymond";
 const USER_INFO = gql`
 	{
 		users(username: "Raymond") {
@@ -31,7 +30,7 @@ const USER_INFO = gql`
 `;
 
 const Test = () => {
-	const { loading, error, data } = useQuery(USER_INFO);
+	const { data } = useQuery(USER_INFO);
 
 	// if (loading) return <div>Loading</div>;
 	// if (error) return <div>Error</div>;
