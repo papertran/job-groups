@@ -4,7 +4,7 @@
     "description": "Backend to the job-groups application",
     "main": "index.js",
     "scripts": {
-        "test": "NODE_ENV=test nodemon --exec 'mocha --recursive -R min",
+        "test": "nodemon --exec 'mocha --recursive -R min'",
         "server": "nodemon index.js"
     },
     "author": "Kevin",
