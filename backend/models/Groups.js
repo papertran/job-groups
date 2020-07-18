@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
-const userSchema = require('./User');
+// const userSchema = require('./User');
 
 const jobSchema = new Schema({
     name: String,

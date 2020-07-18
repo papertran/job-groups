@@ -1,14 +1,8 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
-// const groupSchema = require('./Groups');
-const { Schema } = require('./Groups');
-
 const userSchema = new Schema({
-    name: {
-        type: String,
-        required: [true, 'Name is required'],
-    },
+    name: String,
     googleId: String,
     group: [
         {
