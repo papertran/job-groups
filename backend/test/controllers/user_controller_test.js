@@ -10,7 +10,7 @@ describe('User controller', () => {
         user.countDocuments({ googleId: 'testgoogleId' }).then((count) => {
             request(app)
                 .post('/api/user')
-                .send({ name: 'Kevin Tran', googleId: 'testgoogleId' })
+                .send({ name: 'user', googleId: 'testgoogleId' })
                 .end(() => {
                     // console.log(count);
                     user.countDocuments({ googleId: 'testgoogleId' }).then(
@@ -20,6 +20,20 @@ describe('User controller', () => {
                             done();
                         }
                     );
+                });
+        });
+    });
+
+    it('Sends a get request to /api/user  to see it exists', (done) => {
+        const newUser = new user({ name: 'user', googleId: 'testgoogleId' });
+        newUser.save().then(() => {
+            request(app)
+                .get('/api/user')
+                .send({ name: 'user', googleId: 'testgoogleId' })
+                .end((err, response) => {
+                    assert(response.body.name === 'user');
+                    assert(response.body.googleId === 'testgoogleId');
+                    done();
                 });
         });
     });

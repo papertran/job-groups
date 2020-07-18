@@ -1,14 +1,22 @@
 const user = require('../models/User');
-const { estimatedDocumentCount } = require('../models/User');
 
 module.exports = {
+    /* userProps = {
+        "name",
+        "googleId" 
+    }*/
     index(req, res, next) {
-        console.log(req);
+        const userProps = req.body;
+        user.findOne(userProps)
+            .then((user) => res.send(user))
+            .catch(next);
     },
-    create(req, res, next) {
-        // console.log('GET THIS');
-        console.log(req.body);
 
+    /* userProps = {
+        "name",
+        "googleId" 
+    }*/
+    create(req, res, next) {
         const userProps = req.body;
         user.create(userProps)
             .then((user) => res.send(user))
