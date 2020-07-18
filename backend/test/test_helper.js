@@ -14,12 +14,18 @@ mongoose.connection
 
 beforeEach((done) => {
     const { users, groups } = mongoose.connection.collections;
-    if (groups != undefined) {
-        Promise.all(users.drop(), groups.drop())
+    if (groups && users) {
+        mongoose.connection.db
+            .dropDatabase()
+            .then(() => done())
+            .catch(() => done());
+    } else if (users) {
+        users
+            .drop()
             .then(() => done())
             .catch(() => done());
     } else {
-        users
+        groups
             .drop()
             .then(() => done())
             .catch(() => done());
