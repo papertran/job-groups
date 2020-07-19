@@ -170,9 +170,12 @@ class UserList extends React.Component {
         return (
             <>
                 <div className="flex justify-center">
-                    <p className="bg-gray-400 mt-4 h-12 w-4/5 rounded">
-                        {groupData.user.username}
-                    </p>
+                    <div className=" flex items-center bg-gray-400 mt-4 h-16 w-11/12 rounded">
+                        <div className="rounded-full bg-mainpink ml-2 mr-2">
+                        <img className="h-10 w-10 object-contain" src={require('../images/clumsy.png')}/>
+                        </div>
+                        <h2>{groupData.user.username}</h2>
+                    </div>
                 </div>
             </>
         )
@@ -182,6 +185,9 @@ class UserList extends React.Component {
         return (
             <>
                 <div className="bg-darkpurple2 h-full mt-4 overflow-scroll">
+                    <button className="bg-mainpink rounded mt-6 ml-6">
+                        <img src={require('../images/icon-plus.svg')}/>
+                    </button>
                     {test.group.jobgroupsSet.map(this.renderUser)}
                 </div>
             </>

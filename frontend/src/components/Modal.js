@@ -38,7 +38,7 @@ const Modal = ({ handleClose, show, children }) => {
             <section className="flex flex-col items-center modal-main">
                 {/* { children } */}
                 <img
-                    className="mt-4 mb-4"
+                    className="mt-6 mb-6"
                     src={require('../images/Logo.png')}
                     alt="logo"
                 />
@@ -68,18 +68,20 @@ const Modal = ({ handleClose, show, children }) => {
                     }
                 />
 
-                <div className="flex-initial">
+                {/* <div className=""> */}
                     <input
-                        className="bg-darkpurple rounded p-2"
+                        className="modalinput"
+                        // className="bg-darkpurple rounded p-2"
                         type="text"
                         placeholder="First Name"
                     />
                     <input
-                        className="bg-darkpurple rounded p-2"
+                        className="modalinput"
+                        // className="bg-darkpurple rounded p-2"
                         type="text"
                         placeholder="Last Name"
                     />
-                </div>
+                {/* </div> */}
 
                 <input
                     className="modalinput"
@@ -106,7 +108,7 @@ const Modal = ({ handleClose, show, children }) => {
                     }
                 />
 
-                <button className="" onClick={addUser}>
+                <button className="bg-mainpink w-24 h-10 rounded mt-4" onClick={addUser}>
                     Register
                 </button>
 

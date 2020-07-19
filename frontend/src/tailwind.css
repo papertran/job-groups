@@ -2,7 +2,7 @@
 @tailwind components;
 
 .modalinput {
-    @apply bg-darkpurple rounded w-3/4 p-2;
+    @apply bg-darkpurple rounded w-3/4 p-2 mb-4;
 }
 
 /* make media query at 916 w */
