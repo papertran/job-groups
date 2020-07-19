@@ -6,4 +6,5 @@ module.exports = (app) => {
 
     app.post('/api/group', groupController.createGroup);
     app.post('/api/group/addUser', groupController.addUser);
+    app.post('/api/group/addJobs', groupController.addJob);
 };

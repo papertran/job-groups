@@ -4,18 +4,13 @@ const { Schema } = mongoose;
 
 const jobSchema = new Schema({
     name: String,
+    url: String,
     position: String,
     location: String,
     // This is a string because the pay can vary by hour
     pay: String,
     postDate: Date,
-    expireDate: Date,
-    usersApplied: [
-        {
-            type: Schema.Types.ObjectId,
-            ref: 'user',
-        },
-    ],
+    endDate: Date,
 });
 
 const groupSchema = new Schema({
