@@ -6,7 +6,7 @@ module.exports = {
     }*/
     index(req, res, next) {
         const email = req.body;
-        // console.log(email);
+
         user.findOne(email)
             .then((user) => res.send(user))
             .catch(next);
