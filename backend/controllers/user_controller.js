@@ -2,8 +2,7 @@ const user = require('../models/User');
 
 module.exports = {
     /* userProps = {
-        "name",
-        "googleId" 
+        "email"
     }*/
     index(req, res, next) {
         const userProps = req.body;
