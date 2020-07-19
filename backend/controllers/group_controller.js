@@ -29,5 +29,27 @@ module.exports = {
         });
     },
 
-    addUser(req, res, next) {},
+    // adds a user based on email, parameter is the same as above
+    /*
+        groupname: "This is the group for the person to be added"
+        email: This is the person to be added
+    */
+    async addUser(req, res, next) {
+        const email = req.body.email;
+        const groupName = req.body.groupName;
+
+        group
+            .findOne({ name: groupName })
+            .then((group) => {
+                user.findOne({ email }).then((user) => {
+                    group.updateOne({ users: [...group.users, user] });
+                    user.updateOne({
+                        group: [...user.group, group],
+                    })
+                        .then((result) => res.send(result))
+                        .catch(next);
+                });
+            })
+            .catch(next);
+    },
 };
