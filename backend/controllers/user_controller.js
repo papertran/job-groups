@@ -5,14 +5,16 @@ module.exports = {
         "email"
     }*/
     index(req, res, next) {
-        const userProps = req.body;
-        user.findOne(userProps)
+        const email = req.body;
+        // console.log(email);
+        user.findOne(email)
             .then((user) => res.send(user))
             .catch(next);
     },
 
     /* userProps = {
         "name",
+        "email",
         "googleId" 
     }*/
     create(req, res, next) {

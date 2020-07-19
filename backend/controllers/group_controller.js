@@ -4,20 +4,18 @@ const group = require('../models/Groups');
 module.exports = {
     /*expects
 	{
-		user: {
-			// Info from user model
-		}
+        email,
 		groupName
 	}
 	*/
 
     // Creates a group and appends a user to it.
     createGroup(req, res, next) {
-        const userProps = req.body.user;
+        const email = req.body.email;
         const groupName = req.body.groupName;
 
         // Find user then create a group under that users info
-        user.findOne(userProps).then((user) => {
+        user.findOne(email).then((user) => {
             group
                 .create({ name: groupName, users: [user] })
                 .then(
