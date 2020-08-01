@@ -9,32 +9,29 @@ module.exports = {
 	}
     */
 
-    // TODO FIX the updates, these are not correct, it needs to find then update
-    // Creates a group and appends a user to it.
     createGroup(req, res, next) {
         const email = req.body.email;
         const groupName = req.body.groupName;
 
-        group.findOne({ name: groupName }, (err, docs) => {
-            if (docs) {
-                res.send({ error: 'Group name already exists!' });
-            } else {
-                // Find user then create a group under that users info
-                user.findOne({ email }).then((user) => {
+        user.findOne({ email })
+            .then((foundUser) => {
+                group.findOne({ name: groupName }, (err, docs) => {
+                    if (docs) {
+                        res.send({ error: 'Group name already exists!' });
+                        return;
+                    }
+
                     group
-                        .create({ name: groupName, users: [user] })
-                        .then(
-                            // After creating the group, add the group to the user that created it
-                            (group) => {
-                                user.updateOne({
-                                    group: [...user.group, group],
-                                }).then(() => res.send(group));
-                            }
-                        )
+                        .create({ name: groupName, users: [foundUser] })
+                        .then((createdGroup) => {
+                            foundUser.group.push(createdGroup);
+                            foundUser.save();
+                            res.send({ createGroup });
+                        })
                         .catch(next);
                 });
-            }
-        });
+            })
+            .catch(next);
     },
 
     // adds a user based on email, parameter is the same as above
@@ -46,15 +43,19 @@ module.exports = {
         const email = req.body.email;
         const groupName = req.body.groupName;
 
-        group
-            .findOne({ name: groupName })
-            .then((group) => {
-                user.findOne({ email }).then((user) => {
-                    group.updateOne({ users: [...group.users, user] });
-                    user.updateOne({
-                        group: [...user.group, group],
-                    })
-                        .then((result) => res.send(result))
+        user.findOne({ email })
+            .then((foundUser) => {
+                group.findOne({ name: groupName }, (err, foundGroup) => {
+                    if (err) {
+                        res.send({ error: 'Group does not exist' });
+                        return;
+                    }
+
+                    foundGroup.users.push(foundUser);
+                    foundUser.group.push(foundGroup);
+                    foundGroup
+                        .save()
+                        .then(foundUser.save().then(res.send(foundUser)))
                         .catch(next);
                 });
             })
@@ -76,11 +77,13 @@ module.exports = {
         const groupName = req.body.groupName;
         const job = req.body.job;
 
-        group
-            .findOne({ name: groupName })
-            .then((foundGroup) => {
-                foundGroup.update();
-            })
-            .catch(next);
+        group.findOne({ name: groupName }, function (err, foundGroup) {
+            if (err) next;
+            foundGroup.jobs.push(job);
+            foundGroup
+                .save()
+                .then(() => res.send({ jobs: foundGroup.jobs }))
+                .catch(next);
+        });
     },
 };
