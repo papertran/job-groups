@@ -1,5 +1,6 @@
 const user = require('../models/User');
 const group = require('../models/Groups');
+const { create } = require('../models/User');
 
 module.exports = {
     /*expects
@@ -9,29 +10,31 @@ module.exports = {
 	}
     */
 
-    createGroup(req, res, next) {
+    async createGroup(req, res, next) {
         const email = req.body.email;
         const groupName = req.body.groupName;
 
-        user.findOne({ email })
-            .then((foundUser) => {
-                group.findOne({ name: groupName }, (err, docs) => {
-                    if (docs) {
-                        res.send({ error: 'Group name already exists!' });
-                        return;
-                    }
+        try {
+            // Find the user, and check if the group exists
+            const User = Promise.resolve(user.findOne({ email }));
+            const Group = Promise.resolve(group.findOne({ name: groupName }));
+            let [foundUser, checkGroup] = await Promise.all([User, Group]);
 
-                    group
-                        .create({ name: groupName, users: [foundUser] })
-                        .then((createdGroup) => {
-                            foundUser.group.push(createdGroup);
-                            foundUser.save();
-                            res.send({ createGroup });
-                        })
-                        .catch(next);
-                });
-            })
-            .catch(next);
+            if (checkGroup) {
+                res.send({ error: 'Group name already exists!' });
+                return;
+            }
+
+            const createGroup = await Promise.resolve(
+                group.create({ name: groupName, users: [foundUser] })
+            );
+
+            foundUser.group.push(createGroup);
+            foundUser.save().then((savedUser) => res.send({ user: savedUser }));
+        } catch (err) {
+            next;
+            return;
+        }
     },
 
     // adds a user based on email, parameter is the same as above
@@ -39,27 +42,45 @@ module.exports = {
         groupname: "This is the group for the person to be added"
         email: This is the person to be added
     */
-    addUser(req, res, next) {
+    async addUser(req, res, next) {
         const email = req.body.email;
         const groupName = req.body.groupName;
 
-        user.findOne({ email })
-            .then((foundUser) => {
-                group.findOne({ name: groupName }, (err, foundGroup) => {
-                    if (err) {
-                        res.send({ error: 'Group does not exist' });
-                        return;
-                    }
+        try {
+            const User = Promise.resolve(user.findOne({ email }));
+            const Group = Promise.resolve(group.findOne({ name: groupName }));
+            let [foundUser, foundGroup] = await Promise.all([User, Group]);
 
-                    foundGroup.users.push(foundUser);
-                    foundUser.group.push(foundGroup);
-                    foundGroup
-                        .save()
-                        .then(foundUser.save().then(res.send(foundUser)))
-                        .catch(next);
-                });
-            })
-            .catch(next);
+            // Check if both items are found
+            if (foundUser == null) {
+                res.send({ error: 'User not found!' });
+                return;
+            }
+            if (foundGroup == null) {
+                res.send({ error: 'User not found!' });
+                return;
+            }
+
+            // Check if user already exists in the group
+            for (let i = 0; i < foundUser.group.length; i++) {
+                if (foundUser.group[i].equals(foundGroup._id)) {
+                    res.send({ error: 'User already exists in group!' });
+                    return;
+                }
+            }
+
+            foundGroup.users.push(foundUser);
+            foundUser.group.push(foundGroup);
+
+            const saveGroup = Promise.resolve(foundGroup.save());
+            const saveUser = Promise.resolve(foundUser.save());
+
+            await Promise.all([saveGroup, saveUser]);
+            res.send({ group: foundGroup });
+        } catch (err) {
+            next;
+            return;
+        }
     },
 
     /*
