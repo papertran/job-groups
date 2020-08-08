@@ -8,6 +8,13 @@ module.exports = {
         const email = req.body;
 
         user.findOne(email)
+            .populate({
+                path: 'group',
+                populate: {
+                    path: 'users',
+                    model: 'user',
+                },
+            })
             .then((user) => res.send(user))
             .catch(next);
     },
