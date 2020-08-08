@@ -12,7 +12,7 @@ class Group extends React.Component {
                     {/* <div className="bg-gray-400 rounded"> */}
                         <form className="flex bg-white rounded items-center justify-end w-full ">
                             <img className="h-6 ml-2 z-10" src={require('../images/icon-search.svg')}></img>
-                            <input className="w-full rounded h-10 pl-10 -ml-8 focus:border-gray-400" type="text" placeholder="search">
+                            <input className="w-full rounded h-10 pl-10 -ml-8 border focus:border-red-400" type="text" placeholder="search">
 
                             </input>
                         </form>

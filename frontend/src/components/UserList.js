@@ -169,7 +169,7 @@ class UserList extends React.Component {
     renderUser(groupData) {
         return (
             <>
-                <div className="flex justify-center">
+                <div className="flex justify-center" key={groupData.user.username}>
                     <div className=" flex items-center bg-gray-400 mt-4 h-16 w-11/12 rounded">
                         <div className="rounded-full bg-mainpink ml-2 mr-2">
                         <img className="h-10 w-10 object-contain" src={require('../images/clumsy.png')}/>
