@@ -46,13 +46,12 @@ class Login extends React.Component {
 
                     <div className="flex justify-center items-center bg-secpurple w-2/5 h-full">
                         <div className="flex inline w-3/4 pt-10">
-                            <button
-                                onClick={(event) => console.log(event)}
+                            <a
                                 className="w-20 h-8 bg-mainpink hover:bg-secpurple text-white rounded"
-                                type="button"
+                                href="http://localhost:5000/auth/google"
                             >
                                 Login with Google
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>
