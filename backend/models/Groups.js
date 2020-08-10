@@ -15,6 +15,7 @@ const jobSchema = new Schema({
 
 const groupSchema = new Schema({
     name: String,
+    description: String,
     users: [
         {
             type: Schema.Types.ObjectId,

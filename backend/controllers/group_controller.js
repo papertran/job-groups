@@ -6,14 +6,15 @@ module.exports = {
     /*expects
 	{
         email,
-		groupName
+        groupName,
+        description
 	}
     */
 
     async createGroup(req, res, next) {
         const email = req.body.email;
         const groupName = req.body.groupName;
-
+        const description = req.body.description;
         try {
             // Find the user, and check if the group exists
             const User = Promise.resolve(user.findOne({ email }));
@@ -26,7 +27,11 @@ module.exports = {
             }
 
             const createGroup = await Promise.resolve(
-                group.create({ name: groupName, users: [foundUser] })
+                group.create({
+                    name: groupName,
+                    users: [foundUser],
+                    description,
+                })
             );
 
             foundUser.group.push(createGroup);
