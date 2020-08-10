@@ -92,6 +92,7 @@ module.exports = {
         groupname
         job: {
             name
+            url
             position
             location
             pay
@@ -108,7 +109,7 @@ module.exports = {
             foundGroup.jobs.push(job);
             foundGroup
                 .save()
-                .then(() => res.send({ jobs: foundGroup.jobs }))
+                .then((group) => res.send({ group }))
                 .catch(next);
         });
     },

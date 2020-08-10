@@ -1,5 +1,5 @@
 import fetch from 'node-fetch';
-import { FETCH_USER, ADD_GROUP } from './types';
+import { FETCH_USER, ADD_GROUP, ADD_JOB } from './types';
 
 export const fetchUser = () => async (dispatch) => {
     const json = await (
@@ -28,4 +28,27 @@ export const addGroup = (formValues) => async (dispatch, getState) => {
     });
     const group = await response.json();
     dispatch({ type: ADD_GROUP, payload: group });
+};
+
+// This assumes everything is correct, does not check for errors.
+export const addJob = (formValues) => async (dispatch) => {
+    const { groupName, url, jobName, position, location, pay } = formValues;
+    const body = {
+        groupName: groupName,
+        job: {
+            name: jobName,
+            position,
+            url,
+            location,
+            pay,
+        },
+    };
+    const response = await fetch('http://localhost:5000/api/group/addJobs', {
+        method: 'post',
+        body: JSON.stringify(body),
+        headers: { 'Content-Type': 'application/json' },
+    });
+    const group = await response.json();
+    console.log(group);
+    dispatch({ type: ADD_JOB, payload: group });
 };
