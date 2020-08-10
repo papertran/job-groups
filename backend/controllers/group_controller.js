@@ -35,7 +35,7 @@ module.exports = {
             );
 
             foundUser.group.push(createGroup);
-            foundUser.save().then((savedUser) => res.send({ user: savedUser }));
+            foundUser.save().then(() => res.send({ group: createGroup }));
         } catch (err) {
             next;
             return;

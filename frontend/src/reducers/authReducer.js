@@ -1,4 +1,4 @@
-import { SIGN_OUT, FETCH_USER } from '../actions/types';
+import { SIGN_OUT, FETCH_USER, ADD_GROUP } from '../actions/types';
 
 const INITIAL_STATE = {
     isSignedIn: null,
@@ -13,6 +13,10 @@ export default (state = INITIAL_STATE, action) => {
             return { ...state, isSignedIn: false, user: false };
         case SIGN_OUT:
             return { ...state, isSignedIn: false, user: null };
+        case ADD_GROUP:
+            let user = state.user;
+            user.group.push(action.payload);
+            return { ...state, user };
         default:
             return state;
     }

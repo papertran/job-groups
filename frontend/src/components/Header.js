@@ -61,7 +61,7 @@ const Header = ({ isSignedIn }) => {
                             <span className="rounded-md shadow-sm">
                                 <button
                                     type="button"
-                                    className="relative inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-500 hover:bg-indigo-400 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-600 active:bg-indigo-600 transition duration-150 ease-in-out"
+                                    className="relative inline-flex items-center mr-4 px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-500 hover:bg-indigo-400 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-600 active:bg-indigo-600 transition duration-150 ease-in-out"
                                 >
                                     <svg
                                         className="-ml-1 mr-2 h-5 w-5"
@@ -73,8 +73,26 @@ const Header = ({ isSignedIn }) => {
                                             clipRule="evenodd"
                                         />
                                     </svg>
-                                    <span>New Job</span>
+                                    <span>New Group</span>
                                 </button>
+                                <span className="rounded-md shadow-sm">
+                                    <button
+                                        type="button"
+                                        className="relative inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-500 hover:bg-indigo-400 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-600 active:bg-indigo-600 transition duration-150 ease-in-out"
+                                    >
+                                        <svg
+                                            className="-ml-1 mr-2 h-5 w-5"
+                                            viewBox="0 0 20 20"
+                                            fill="currentColor"
+                                        >
+                                            <path
+                                                d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
+                                                clipRule="evenodd"
+                                            />
+                                        </svg>
+                                        <span>New Job</span>
+                                    </button>
+                                </span>
                             </span>
                         </div>
                         <div className="hidden md:ml-4 md:flex-shrink-0 md:flex md:items-center">
