@@ -1,4 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux';
+
 import user from './data/user.json';
 import Group from './Group';
 import UserList from './UserList';
@@ -7,7 +9,7 @@ import AddListing from './AddListing';
 
 class Home extends React.Component {
     render() {
-        console.log(user);
+        console.log(this.props.auth);
 
         return (
             <>
@@ -27,4 +29,7 @@ class Home extends React.Component {
     }
 }
 
-export default Home;
+function mapStateToProps({ auth }) {
+    return { auth };
+}
+export default connect(mapStateToProps, null)(Home);
