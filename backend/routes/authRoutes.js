@@ -14,8 +14,8 @@ module.exports = (app) => {
     app.get(
         '/auth/google/callback',
         passport.authenticate('google', {
-            // successRedirect: CLIENT_HOME_PAGE,
-            successRedirect: '/auth/login/success',
+            successRedirect: CLIENT_HOME_PAGE,
+            // successRedirect: '/auth/login/success',
 
             failureRedirect: '/auth/google/failed',
         })

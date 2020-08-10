@@ -9,29 +9,17 @@ import Home from './components/Home';
 import Header from './components/Header';
 // import NotFound from './components/NotFound';
 
-import fetch from 'node-fetch';
 class App extends React.Component {
-    async componentDidMount() {
+    componentDidMount() {
         this.props.fetchUser();
-
-        // console.log('After fetch');
-        // let response = await fetch('/auth/login/success', {
-        //     method: 'GET',
-        //     credentials: 'include',
-        //     headers: {
-        //         Accept: 'application/json',
-        //         'Content-Type': 'application/json',
-        //         'Access-Control-Allow-Credentials': true,
-        //     },
-        // });
-
-        // let json = await response.json();
-        // console.log(json);
     }
+
     render() {
+        const { auth } = this.props;
+        console.log(auth);
         return (
             <>
-                <Header />
+                <Header isSignedIn={auth.isSignedIn} />
                 <Switch>
                     <Route exact path="/" component={Login} />
                     <Route path="/Home" component={Home} />
@@ -42,4 +30,8 @@ class App extends React.Component {
     }
 }
 
-export default connect(null, { fetchUser })(App);
+function mapStateToProps({ auth }) {
+    return { auth };
+}
+
+export default connect(mapStateToProps, { fetchUser })(App);
