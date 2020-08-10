@@ -14,7 +14,9 @@ module.exports = (app) => {
     app.get(
         '/auth/google/callback',
         passport.authenticate('google', {
-            successRedirect: CLIENT_HOME_PAGE,
+            // successRedirect: CLIENT_HOME_PAGE,
+            successRedirect: '/auth/login/success',
+
             failureRedirect: '/auth/google/failed',
         })
     );
@@ -26,13 +28,14 @@ module.exports = (app) => {
         });
     });
 
-    app.get('/api/logout', (req, res) => {
+    app.get('/auth/logout', (req, res) => {
         req.logout();
         res.redirect(CLIENT_PAGE_LOGIN);
+        // res.redirect('auth/login/success');
     });
 
     // when login is successful, retrieve user info
-    app.get('/login/success', (req, res) => {
+    app.get('/auth/login/success', (req, res) => {
         if (req.user) {
             res.json({
                 success: true,
