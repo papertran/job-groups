@@ -13,7 +13,20 @@ import AddJobForm from './components/AddJobForm';
 
 class App extends React.Component {
     componentDidMount() {
-        this.props.fetchUser();
+        this.props.fetchUser();    
+    }
+
+    renderHome () {
+        if(this.props.auth.isSignedIn === null) {
+            return (
+                <Login/>
+            )
+        }
+        else {
+            return (
+                <Home/>
+            )
+        }
     }
 
     render() {
@@ -22,9 +35,10 @@ class App extends React.Component {
         return (
             <>
                 <Header isSignedIn={auth.isSignedIn} />
+                {this.renderHome()}
                 <Switch>
-                    <Route exact path="/" component={Login} />
-                    <Route path="/Home" component={Home} />
+                    {/* <Route exact path="/" component={Login} /> */}
+                    {/* <Route path="/Home" component={Home} /> */}
                     <Route
                         path="/AddGroup"
                         render={() => (

@@ -55,7 +55,7 @@ const Header = ({ isSignedIn }) => {
                             </div>
                             <a
                                 href="/auth/logout"
-                                className="mx-3 px-3 py-2 rounded-md text-sm font-medium leading-5 text-gray-300 hover:text-white hover:bg-gray-700 transition duration-150 ease-in-out"
+                                className="mx-3 px-3 py-2 rounded-md text-sm font-medium leading-5 text-gray-300 hover:text-white hover:bg-darkpurple2 transition duration-150 ease-in-out"
                                 role="menuitem"
                             >
                                 Sign Out
@@ -76,7 +76,7 @@ const Header = ({ isSignedIn }) => {
                         <div className="self-center">
                             <a
                                 href="/auth/google"
-                                className="mr-3 px-3 py-2 rounded-md text-sm font-medium leading-5 text-gray-300 hover:text-white hover:bg-gray-700 transition duration-150 ease-in-out"
+                                className="mr-3 px-3 py-2 rounded-md text-sm font-medium leading-5 text-gray-300 hover:text-white hover:bg-darkpurple2 transition duration-150 ease-in-out"
                                 role="menuitem"
                             >
                                 Sign In
