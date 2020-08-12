@@ -80,7 +80,11 @@ module.exports = {
             const saveGroup = Promise.resolve(foundGroup.save());
             const saveUser = Promise.resolve(foundUser.save());
 
-            await Promise.all([saveGroup, saveUser]);
+            const [savedGroup, savedUser] = await Promise.all([
+                saveGroup,
+                saveUser,
+            ]);
+            console.log(savedGroup);
             res.send({ group: foundGroup });
         } catch (err) {
             next;
