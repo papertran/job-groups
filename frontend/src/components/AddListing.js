@@ -1,14 +1,14 @@
 import React from 'react';
 
 const AddListing = () => {
-    return(
+    return (
         <div className="flex justify-end items-center h-14 w-full mt-10 mb-4">
             <h1 className="text-3xl font-bold">Listings</h1>
             <button className="bg-mainpink h-6 rounded ml-2 mr-4">
-                <img className="" src={require('../images/icon-plus.svg')}/>
+                <img className="" src={require('../images/icon-plus.svg')} />
             </button>
         </div>
-    )
-}
+    );
+};
 
 export default AddListing;

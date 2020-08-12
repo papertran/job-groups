@@ -163,10 +163,7 @@ const test = {
 };
 
 const JobList = () => {
-    console.log(test);
-
     const renderJobs = (groupData) => {
-        console.log('groupdaa', groupData);
         return (
             <>
                 <div className="flex justify-center">
