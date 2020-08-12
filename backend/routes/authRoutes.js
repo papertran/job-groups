@@ -1,6 +1,6 @@
 const passport = require('passport');
 
-const CLIENT_HOME_PAGE = 'http://localhost:3000/Home';
+const CLIENT_HOME_PAGE = 'http://localhost:3000/';
 const CLIENT_PAGE_LOGIN = 'http://localhost:3000/';
 
 module.exports = (app) => {

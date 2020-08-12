@@ -34,6 +34,7 @@ class App extends React.Component {
                 {/* {this.renderHome()} */}
                 <Switch>
                     <Route exact path="/" render={() => this.renderHome()} />
+                    {/* <Route exact path="/" component={Home} /> */}
                     {/* <Route path="/Home" component={Home} /> */}
                     <Route
                         path="/AddGroup"

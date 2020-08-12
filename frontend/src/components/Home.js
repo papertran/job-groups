@@ -6,13 +6,16 @@ import Group from './Group';
 import UserList from './UserList';
 import JobList from './JobList';
 import AddListing from './AddListing';
+import { fetchUser } from '../actions';
 
 class Home extends React.Component {
+    componentDidMount() {
+        this.props.fetchUser();
+    }
+
     renderEmptyUser() {
-        console.log(
-            this.props.auth.user.group,
-            this.props.auth.user.group.length
-        );
+        // console.log;
+        // this.props.auth.user.group, this.props.auth.user.group.length();
 
         if (this.props.auth.user.group.length === 0) {
             return (
@@ -99,4 +102,4 @@ class Home extends React.Component {
 function mapStateToProps({ auth }) {
     return { auth };
 }
-export default connect(mapStateToProps, null)(Home);
+export default connect(mapStateToProps, { fetchUser })(Home);
