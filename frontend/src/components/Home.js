@@ -13,6 +13,10 @@ class Home extends React.Component {
         this.props.fetchUser();
     }
 
+    componentDidUpdate() {
+        // this.props.fetchUser();
+    }
+
     renderEmptyUser() {
         // console.log;
         // this.props.auth.user.group, this.props.auth.user.group.length();
@@ -20,7 +24,7 @@ class Home extends React.Component {
         if (this.props.auth.user.group.length === 0) {
             return (
                 <>
-                    <Group />
+                    <Group auth={this.props.auth} />
                     <div className="bg-darkpurple flex flex-col h-full mt-4">
                         <div className="text-white w-3/4 mt-10 self-center">
                             <h1 className="text-2xl font-bold">
@@ -44,7 +48,7 @@ class Home extends React.Component {
         } else {
             return (
                 <>
-                    <Group />
+                    <Group auth={this.props.auth} />
                     <UserList />
                 </>
             );
@@ -77,7 +81,7 @@ class Home extends React.Component {
     }
 
     render() {
-        console.log('im in home', this.props.auth);
+        // console.log('im in home', this.props.auth);
 
         return (
             <>
