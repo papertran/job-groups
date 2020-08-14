@@ -4,11 +4,15 @@ import { setCurrentGroup } from '../actions';
 
 class Group extends React.Component {
     componentDidMount() {
-        // this.props.fetchUser();
-        if (this.props.auth.user.group.length > 0) {
+        console.log('hi', this.props.currentGroup);
+        if (this.props.auth.user.group.length === 1) {
             const group = this.props.auth.user.group[0];
             this.props.setCurrentGroup(group);
         }
+    }
+
+    componentWillMount() {
+        console.log('hi', this.props.currentGroup);
     }
 
     renderGroups(group) {
@@ -20,8 +24,6 @@ class Group extends React.Component {
     }
 
     changeOption(e) {
-        // console.log('poo', JSON.parse(e.target.value));
-
         this.props.setCurrentGroup(JSON.parse(e.target.value));
     }
 
