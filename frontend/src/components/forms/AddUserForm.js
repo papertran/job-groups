@@ -4,13 +4,12 @@ import { Field, reduxForm } from 'redux-form';
 class AddUserForm extends Component {
     renderInput = ({ input, label, meta }) => {
         return (
-            <div className="flex flex-none jusitify-between">
-                <label>{label}</label>
+            <div className="flex mt-10 mx-8 justify-between">
+                <label className="mr-1">{label}</label>
                 <input
-                    className="rounded"
+                    className="shadow appearance-none border rounded px-2 py-1 text-gray-700 focus:outline-none focus:shadow-outline"
                     {...input}
                     autoComplete="off"
-                    className="border "
                 />
             </div>
         );
@@ -22,9 +21,10 @@ class AddUserForm extends Component {
 
     render() {
         return (
-            <div className="bg-secpurple h-screen flex justify-center items-center">
+            <div className="bg-secpurple h-screen flex flex-col justify-center items-center">
+                <h1 className="text-2xl text-gray-700 mb-4">Add a user</h1>
                 <form
-                    className="bg-darkpurple2 h-64 w-1/4 rounded-lg flex-none flex-col justify-evenly items-center text-white"
+                    className="bg-darkpurple2 h-64 flex-shrink-0 flex flex-col rounded-lg text-white"
                     onSubmit={this.props.handleSubmit(this.onSubmit)}
                 >
                     <Field
@@ -37,7 +37,7 @@ class AddUserForm extends Component {
                         component={this.renderInput}
                         label="Enter user email"
                     />
-                    <button className="border rounded bg-mainpink w-1/4 h-10">
+                    <button className="border self-center rounded mt-12 bg-mainpink w-1/4 h-10">
                         Submit
                     </button>
                 </form>
