@@ -20,14 +20,12 @@ export default (state = INITIAL_STATE, action) => {
         case SIGN_OUT:
             return { ...state, isSignedIn: false, user: null };
         case ADD_GROUP: {
-            let user = state.user;
-            user.group.push(action.payload);
-            return { ...state, user };
+            return { ...state, user: action.payload };
         }
         case ADD_JOB: {
             let user = state.user;
             let index = user.group.findIndex(
-                (group) => group._id === action.payload.group._id
+                (group) => group._id === action.payload._id
             );
             user.group[index] = action.payload;
             return { ...state, user };
@@ -35,7 +33,7 @@ export default (state = INITIAL_STATE, action) => {
         case ADD_USER: {
             let user = state.user;
             let index = user.group.findIndex(
-                (group) => group._id === action.payload.group._id
+                (group) => group._id === action.payload._id
             );
             user.group[index] = action.payload;
             return { ...state, user };

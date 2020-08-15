@@ -19,6 +19,7 @@ if (process.env.NODE_ENV !== 'test') {
     mongoose.connect(keys.mongoURI, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
+        useFindAndModify: false,
     });
 }
 
