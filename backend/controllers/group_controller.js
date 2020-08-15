@@ -10,34 +10,54 @@ module.exports = {
         description
 	}
     */
-
+    // Returns and updated user
     async createGroup(req, res, next) {
         const email = req.body.email;
         const groupName = req.body.groupName;
         const description = req.body.description;
         try {
             // Find the user, and check if the group exists
-            const User = Promise.resolve(user.findOne({ email }));
-            const Group = Promise.resolve(group.findOne({ name: groupName }));
-            let [foundUser, checkGroup] = await Promise.all([User, Group]);
+            const foundUser = await user.findOne({ email }).exec();
+            const foundGroup = await group.findOne({ name: groupName }).exec();
 
-            if (checkGroup) {
-                res.send({ error: 'Group name already exists!' });
+            if (foundUser === null) {
+                res.send({ error: 'user does not exist!' });
                 return;
             }
 
-            const createGroup = await Promise.resolve(
-                group.create({
-                    name: groupName,
-                    users: [foundUser],
-                    description,
-                })
-            );
+            if (foundGroup !== null) {
+                res.send({ error: 'Group already exists!' });
+                return;
+            }
 
-            foundUser.group.push(createGroup);
-            foundUser.save().then(() => res.send({ group: createGroup }));
+            // console.log(foundUser);
+
+            const createGroup = await group.create({
+                name: groupName,
+                users: [foundUser],
+                description,
+            });
+
+            const updatedUser = await user
+                .findByIdAndUpdate(
+                    foundUser._id,
+                    {
+                        $push: { group: createGroup },
+                    },
+                    { new: true }
+                )
+                .populate({
+                    path: 'group',
+                    populate: {
+                        path: 'users',
+                        model: 'user',
+                    },
+                })
+                .exec();
+
+            res.send({ data: updatedUser });
         } catch (err) {
-            next;
+            res.send({ error: err });
             return;
         }
     },
@@ -47,22 +67,20 @@ module.exports = {
         groupname: "This is the group for the person to be added"
         email: This is the person to be added
     */
+    // returns an updated group
     async addUser(req, res, next) {
         const email = req.body.email;
         const groupName = req.body.groupName;
-
         try {
-            const User = Promise.resolve(user.findOne({ email }));
-            const Group = Promise.resolve(group.findOne({ name: groupName }));
-            let [foundUser, foundGroup] = await Promise.all([User, Group]);
+            const foundUser = await user.findOne({ email }).exec();
+            const foundGroup = await group.findOne({ name: groupName }).exec();
 
-            // Check if both items are found
             if (foundUser == null) {
                 res.send({ error: 'User not found!' });
                 return;
             }
             if (foundGroup == null) {
-                res.send({ error: 'User not found!' });
+                res.send({ error: 'Group not found!' });
                 return;
             }
 
@@ -74,16 +92,25 @@ module.exports = {
                 }
             }
 
-            foundGroup.users.push(foundUser);
-            foundUser.group.push(foundGroup);
+            await user
+                .findByIdAndUpdate(foundUser._id, {
+                    $push: { group: foundGroup },
+                })
+                .exec();
 
-            const saveGroup = Promise.resolve(foundGroup.save());
-            const saveUser = Promise.resolve(foundUser.save());
-
-            await Promise.all([saveGroup, saveUser]);
-            res.send({ group: foundGroup });
+            const updatedGroup = await group
+                .findByIdAndUpdate(
+                    foundGroup._id,
+                    {
+                        $push: { users: foundUser },
+                    },
+                    { new: true }
+                )
+                .populate('users')
+                .exec();
+            res.send({ data: updatedGroup });
         } catch (err) {
-            next;
+            res.send({ error: err });
             return;
         }
     },
@@ -100,17 +127,19 @@ module.exports = {
             endDate "June 1, 2020"
         }
     */
-    addJob(req, res, next) {
+    async addJob(req, res, next) {
         const groupName = req.body.groupName;
         const job = req.body.job;
 
-        group.findOne({ name: groupName }, function (err, foundGroup) {
-            if (err) next;
-            foundGroup.jobs.push(job);
-            foundGroup
-                .save()
-                .then((group) => res.send({ group }))
-                .catch(next);
-        });
+        const updatedGroup = await group
+            .findOneAndUpdate(
+                { name: groupName },
+                { $push: { jobs: job } },
+                { new: true }
+            )
+            .populate('users')
+            .exec();
+
+        res.send({ data: updatedGroup });
     },
 };
