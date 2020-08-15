@@ -4,6 +4,40 @@ import { Field, reduxForm } from 'redux-form';
 class AddUserForm extends Component {
     renderInput = ({ input, label, meta }) => {
         return (
+            <div>
+                <label>{label}</label>
+                <input {...input} autoComplete="off" className="border " />
+            </div>
+        );
+    };
+
+    onSubmit = (formValues) => {
+        this.props.onSubmit(formValues);
+    };
+
+    render() {
+        return (
+            <form onSubmit={this.props.handleSubmit(this.onSubmit)}>
+                <Field
+                    name="groupName"
+                    component={this.renderInput}
+                    label="Enter Group Name"
+                />
+                <Field
+                    name="email"
+                    component={this.renderInput}
+                    label="Enter user email"
+                />
+                <button className="border">Submit</button>
+            </form>
+        );
+    }
+}
+
+/*
+class AddUserForm extends Component {
+    renderInput = ({ input, label, meta }) => {
+        return (
             <div className="flex flex-none jusitify-between">
                 <label>{label}</label>
                 <input
@@ -45,7 +79,7 @@ class AddUserForm extends Component {
         );
     }
 }
-
+*/
 export default reduxForm({
     form: 'addUserForm',
 })(AddUserForm);

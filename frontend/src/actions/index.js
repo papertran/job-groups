@@ -32,8 +32,9 @@ export const addGroup = (formValues) => async (dispatch, getState) => {
         body: JSON.stringify(body),
         headers: { 'Content-Type': 'application/json' },
     });
-    const group = await response.json();
-    dispatch({ type: ADD_GROUP, payload: group });
+    const user = await response.json();
+
+    dispatch({ type: ADD_GROUP, payload: user.data });
 };
 
 // This assumes everything is correct, does not check for errors.
@@ -55,8 +56,8 @@ export const addJob = (formValues) => async (dispatch) => {
         headers: { 'Content-Type': 'application/json' },
     });
     const group = await response.json();
-    console.log(group);
-    dispatch({ type: ADD_JOB, payload: group });
+    console.log(group.data);
+    dispatch({ type: ADD_JOB, payload: group.data });
 };
 
 // This assumes everything is correct, does not check for errors.
@@ -73,7 +74,7 @@ export const addUser = (formValues) => async (dispatch) => {
     });
     const group = await response.json();
     console.log(group);
-    dispatch({ type: ADD_USER, payload: group });
+    dispatch({ type: ADD_USER, payload: group.data });
 };
 
 export const setCurrentGroup = (group) => {
