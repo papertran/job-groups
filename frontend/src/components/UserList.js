@@ -20,6 +20,7 @@ class UserList extends React.Component {
     }
 
     render() {
+        console.log('bruh', this.props.currentGroup);
         return (
             <>
                 <div className="bg-darkpurple2 h-full mt-4 overflow-scroll">

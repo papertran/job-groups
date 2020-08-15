@@ -6,8 +6,8 @@ class Group extends React.Component {
     componentDidMount() {
         console.log('hi', this.props.currentGroup);
         if (this.props.auth.user.group.length === 1) {
-            const group = this.props.auth.user.group[0];
-            this.props.setCurrentGroup(group);
+            // const group = this.props.auth.user.group[0];
+            // this.props.setCurrentGroup(group);
         }
     }
 

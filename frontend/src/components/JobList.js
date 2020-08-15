@@ -18,15 +18,6 @@ const JobList = (props) => {
                     <span className="w-48 flex justify-center">
                         <a href={groupData.url}>{groupData.url}</a>
                     </span>
-
-                    <span className="w-32 flex justify-end">
-                        <button className="flex justify-center w-6 rounded bg-darkpurple2 text-white">
-                            <img
-                                className="transform rotate-45"
-                                src={require('../images/icon-plus.svg')}
-                            />
-                        </button>
-                    </span>
                 </div>
             </div>
         );
