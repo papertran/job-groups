@@ -45,7 +45,7 @@ class AddUserForm extends Component {
         );
     }
 }
-*/
+
 export default reduxForm({
     form: 'addUserForm',
 })(AddUserForm);
