@@ -2,16 +2,34 @@ import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 
 class AddUserForm extends Component {
+    renderError = ({ error, touched }) => {
+        console.log('in error', error, touched);
+        if (touched && error) {
+            return (
+                <div>
+                    <p className="text-red-600 text-center mt-1">{error}</p>
+                </div>
+            );
+        } else {
+            return <div></div>;
+        }
+    };
+
     renderInput = ({ input, label, meta }) => {
+        console.log('in render input', meta);
         return (
-            <div className="flex mt-10 mx-8 justify-between">
-                <label className="mr-1">{label}</label>
-                <input
-                    className="shadow appearance-none border rounded px-2 py-1 text-gray-700 focus:outline-none focus:shadow-outline"
-                    {...input}
-                    autoComplete="off"
-                />
-            </div>
+            <>
+                <div className="flex mt-10 mx-8 justify-between">
+                    <label className="mr-1">{label}</label>
+                    <input
+                        className="shadow appearance-none border rounded px-2 py-1 text-gray-700 focus:outline-none focus:shadow-outline"
+                        {...input}
+                        autoComplete="off"
+                        type="text"
+                    />
+                </div>
+                {this.renderError(meta)}
+            </>
         );
     };
 
@@ -24,7 +42,7 @@ class AddUserForm extends Component {
             <div className="bg-secpurple h-screen flex flex-col justify-center items-center">
                 <h1 className="text-2xl text-gray-700 mb-4">Add a user</h1>
                 <form
-                    className="bg-darkpurple2 h-64 flex-shrink-0 flex flex-col rounded-lg text-white"
+                    className="bg-darkpurple2 flex-shrink-0 flex flex-col rounded-lg text-white"
                     onSubmit={this.props.handleSubmit(this.onSubmit)}
                 >
                     <Field
@@ -37,7 +55,10 @@ class AddUserForm extends Component {
                         component={this.renderInput}
                         label="Enter user email"
                     />
-                    <button className="border self-center rounded mt-12 bg-mainpink w-1/4 h-10">
+                    <button
+                        type="submit"
+                        className="border self-center rounded my-6 bg-mainpink w-1/4 h-10"
+                    >
                         Submit
                     </button>
                 </form>
@@ -46,6 +67,21 @@ class AddUserForm extends Component {
     }
 }
 
+const validate = (formValues) => {
+    const errors = {};
+
+    if (!formValues.groupName) {
+        errors.groupName = 'Please enter group name.';
+    }
+
+    if (!formValues.email) {
+        errors.email = 'Please enter user email.';
+    }
+
+    return errors;
+};
+
 export default reduxForm({
     form: 'addUserForm',
+    validate,
 })(AddUserForm);
