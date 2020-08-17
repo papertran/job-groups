@@ -19,40 +19,29 @@ class Login extends React.Component {
     render() {
         return (
             <>
-                <div className="flex h-screen inline">
-                    <div className="bg-mainpurple w-3/5 h-full">
-                        <h1 className="text-2xl font-mono font-bold pl-20 pt-12">
-                            <img
-                                className="inline"
-                                src={require('../images/Logo.png')}
-                                alt="idk"
-                            ></img>
-                            <span className="pl-12">
+                <div className="flex h-screen bg-mainpurple text-darkpurple">
+                    <div className="w-1/2 self-center ml-auto">
+                        <div className="h-64 ml-auto mr-auto w-3/4 flex flex-col">
+                            <h1 className="text-3xl font-bold mb-4">
                                 Welcome to Job Groups!
-                            </span>
-                        </h1>
-                        <div className="font-mono pl-20 pt-12 pr-12">
-                            Job groups is a web application meant to help people
-                            search for jobs by helping others find new job
-                            postings.
-                            <br />
-                            <img
-                                className="pl-40 h-auto"
-                                src={require('../images/clumsy_w_jobs.png')}
-                                alt="notfsadasduppypng"
-                            ></img>
+                            </h1>
+                            <h2 className="text-lg">
+                                Jobs groups is a web application meant to help
+                                people search for jobs by helping others find
+                                new job postings.
+                                <br />
+                                <br />
+                                Invite your friends, share jobs, and help you
+                                and your friends land your dream positions!
+                            </h2>
                         </div>
                     </div>
-
-                    <div className="flex justify-center items-center bg-secpurple w-2/5 h-full">
-                        <div className="flex inline w-3/4 pt-10">
-                            <a
-                                className="w-20 h-8 bg-mainpink hover:bg-secpurple text-white rounded"
-                                href="http://localhost:5000/auth/google"
-                            >
-                                Login with Google
-                            </a>
-                        </div>
+                    <div className="w-1/2 self-center">
+                        <img
+                            className="ml-auto mr-auto"
+                            src={require('../images/clumsy_w_jobs.png')}
+                            alt="notfsadasduppypng"
+                        ></img>
                     </div>
                 </div>
             </>
