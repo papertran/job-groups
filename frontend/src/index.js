@@ -16,7 +16,8 @@ const store = createStore(
     composeEnhancers(applyMiddleware(reduxThunk))
 );
 
-store.subscribe(() => saveToLocalStorage(store.getState()));
+// store.subscribe(() => saveToLocalStorage(store.getState()));
+store.subscribe(() => saveToLocalStorage({ group: store.getState().group }));
 
 render(
     <BrowserRouter>

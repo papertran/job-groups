@@ -3,7 +3,6 @@ import { Field, reduxForm } from 'redux-form';
 
 class AddUserForm extends Component {
     renderError = ({ error, touched }) => {
-        console.log('in error', error, touched);
         if (touched && error) {
             return (
                 <div>
@@ -16,7 +15,6 @@ class AddUserForm extends Component {
     };
 
     renderInput = ({ input, label, meta }) => {
-        console.log('in render input', meta);
         return (
             <>
                 <div className="flex mt-10 mx-8 justify-between">
