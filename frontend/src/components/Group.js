@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { setCurrentGroup } from '../actions';
 
@@ -44,12 +45,16 @@ class Group extends React.Component {
                             {this.props.auth.user.group.map(this.renderGroups)}
                         </select>
                     </form>
-                    <button className="flex justify-center items-center bg-darkpurple w-10 h-10 self-center ml-4 rounded hover:bg-darkpurple2">
+                    <Link
+                        to="/AddUser"
+                        type="button"
+                        className="flex justify-center items-center bg-darkpurple w-10 h-8 self-center ml-4 rounded hover:bg-darkpurple2"
+                    >
                         <img
                             className="h-8"
                             src={require('../images/icon-plus-white.svg')}
                         />
-                    </button>
+                    </Link>
                 </div>
             </>
         );

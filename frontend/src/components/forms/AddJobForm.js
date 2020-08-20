@@ -2,16 +2,31 @@ import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 
 class AddJobForm extends Component {
+    renderError = ({ error, touched }) => {
+        if (touched && error) {
+            return (
+                <div>
+                    <p className="text-red-600 text-center mt-1">{error}</p>
+                </div>
+            );
+        } else {
+            return <div></div>;
+        }
+    };
+
     renderInput = ({ input, label, meta }) => {
         return (
-            <div className="flex mt-10 mx-8 justify-between">
-                <label className="mr-1">{label}</label>
-                <input
-                    {...input}
-                    autoComplete="off"
-                    className="shadow appearance-none border rounded px-2 py-1 text-gray-700 focus:outline-none focus:shadow-outline"
-                />
-            </div>
+            <>
+                <div className="flex mt-10 mx-8 justify-between">
+                    <label className="mr-1">{label}</label>
+                    <input
+                        {...input}
+                        autoComplete="off"
+                        className="shadow appearance-none border rounded px-2 py-1 text-gray-700 focus:outline-none focus:shadow-outline"
+                    />
+                </div>
+                {this.renderError(meta)}
+            </>
         );
     };
 
@@ -66,6 +81,37 @@ class AddJobForm extends Component {
     }
 }
 
+const validate = (formValues) => {
+    const errors = {};
+
+    if (!formValues.groupName) {
+        errors.groupName = 'Please enter group name.';
+    }
+
+    if (!formValues.jobName) {
+        errors.jobName = "Please enter the job's name.";
+    }
+
+    if (!formValues.position) {
+        errors.position = 'Please enter the position.';
+    }
+
+    if (!formValues.url) {
+        errors.url = 'Please enter a url.';
+    }
+
+    if (!formValues.location) {
+        errors.location = 'Please enter a location';
+    }
+
+    if (!formValues.pay) {
+        errors.pay = 'Enter pay amount.';
+    }
+
+    return errors;
+};
+
 export default reduxForm({
     form: 'addJobForm',
+    validate,
 })(AddJobForm);

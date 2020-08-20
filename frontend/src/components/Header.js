@@ -7,11 +7,13 @@ const Header = ({ isSignedIn }) => {
             return (
                 <nav className="bg-darkpurple">
                     <div className="flex justify-between w-full h-16">
-                        <img
-                            className="self-center inline h-10 ml-4"
-                            src={require('../images/Logo.png')}
-                            alt="idk"
-                        ></img>
+                        <Link to="/" type="button" className="self-center">
+                            <img
+                                className="inline h-10 ml-4"
+                                src={require('../images/Logo.png')}
+                                alt="idk"
+                            ></img>
+                        </Link>
                         <div className="flex items-center">
                             <div className="flex-shrink-0">
                                 <span className="rounded-md shadow-sm">
@@ -33,7 +35,7 @@ const Header = ({ isSignedIn }) => {
                                         <span>Go Home</span>
                                     </Link>
 
-                                    <Link
+                                    {/* <Link
                                         to="/AddUser"
                                         type="button"
                                         className="relative inline-flex items-center mr-4 px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-500 hover:bg-indigo-400 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-600 active:bg-indigo-600 transition duration-150 ease-in-out"
@@ -49,7 +51,7 @@ const Header = ({ isSignedIn }) => {
                                             />
                                         </svg>
                                         <span>Add User</span>
-                                    </Link>
+                                    </Link> */}
 
                                     <Link
                                         to="/AddGroup"
@@ -69,7 +71,7 @@ const Header = ({ isSignedIn }) => {
                                         <span>New Group</span>
                                     </Link>
                                     <span className="rounded-md shadow-sm">
-                                        <Link
+                                        {/* <Link
                                             to="/AddJob"
                                             type="button"
                                             className="relative inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-500 hover:bg-indigo-400 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-600 active:bg-indigo-600 transition duration-150 ease-in-out"
@@ -85,7 +87,7 @@ const Header = ({ isSignedIn }) => {
                                                 />
                                             </svg>
                                             <span>New Job</span>
-                                        </Link>
+                                        </Link> */}
                                     </span>
                                 </span>
                             </div>
